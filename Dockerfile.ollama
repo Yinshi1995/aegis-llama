@@ -1,0 +1,14 @@
+FROM ollama/ollama:latest
+
+# Завантажити моделі ПРИ ЗБІРЦІ — вони залишаться в образі
+RUN nohup ollama serve & \
+    sleep 5 && \
+    ollama pull qwen2.5:1.5b && \
+    ollama pull nomic-embed-text && \
+    kill $(cat /tmp/ollama.pid 2>/dev/null) || true
+
+ENV OLLAMA_HOST=0.0.0.0
+
+EXPOSE 11434
+
+CMD ["ollama", "serve"]
