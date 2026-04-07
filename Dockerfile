@@ -24,4 +24,4 @@ COPY . .
 ENV GRADIO_SERVER_NAME=0.0.0.0
 EXPOSE 7860
 
-CMD ["sh", "-c", "GRADIO_SERVER_PORT=${PORT:-7860} exec python -m app.main"]
+CMD ["sh", "-c", "exec python -m app.main"]
